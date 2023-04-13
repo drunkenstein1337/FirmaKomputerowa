@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FirmaKomputerowaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Drukarki">
+    <Key>
+      <PropertyRef Name="DrukarkiID" />
+    </Key>
+    <Property Name="DrukarkiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SN" Type="int" Nullable="false" />
+    <Property Name="Format_papieru" Type="nvarchar" MaxLength="2" Nullable="false" />
+    <Property Name="Kolor" Type="bit" Nullable="false" />
+    <Property Name="Typ_Drukarki" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="Cena" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Laptopy">
+    <Key>
+      <PropertyRef Name="LaptopyID" />
+    </Key>
+    <Property Name="LaptopyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SN" Type="int" Nullable="false" />
+    <Property Name="Procesor" Type="float" Nullable="false" />
+    <Property Name="Pamiec_RAM" Type="int" Nullable="false" />
+    <Property Name="Dysk_SSD" Type="int" Nullable="false" />
+    <Property Name="Dysk_HDD" Type="int" Nullable="false" />
+    <Property Name="Ekran" Type="int" Nullable="false" />
+    <Property Name="Cena" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PC">
+    <Key>
+      <PropertyRef Name="PCID" />
+    </Key>
+    <Property Name="PCID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SN" Type="int" Nullable="false" />
+    <Property Name="Procesor" Type="float" Nullable="false" />
+    <Property Name="Pamiec_RAM" Type="int" Nullable="false" />
+    <Property Name="Dysk_SSD" Type="int" />
+    <Property Name="Dysk_HDD" Type="int" />
+    <Property Name="Predkosc_CD" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="Cena" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Produkty">
+    <Key>
+      <PropertyRef Name="SN" />
+    </Key>
+    <Property Name="ProduktyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SN" Type="int" Nullable="false" />
+    <Property Name="Producent" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="Typ" Type="nvarchar" MaxLength="25" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Drukarki__SN__2C3393D0">
+    <End Role="Produkty" Type="Self.Produkty" Multiplicity="1" />
+    <End Role="Drukarki" Type="Self.Drukarki" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produkty">
+        <PropertyRef Name="SN" />
+      </Principal>
+      <Dependent Role="Drukarki">
+        <PropertyRef Name="SN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Laptopy__SN__29572725">
+    <End Role="Produkty" Type="Self.Produkty" Multiplicity="1" />
+    <End Role="Laptopy" Type="Self.Laptopy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produkty">
+        <PropertyRef Name="SN" />
+      </Principal>
+      <Dependent Role="Laptopy">
+        <PropertyRef Name="SN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PC__SN__267ABA7A">
+    <End Role="Produkty" Type="Self.Produkty" Multiplicity="1" />
+    <End Role="PC" Type="Self.PC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produkty">
+        <PropertyRef Name="SN" />
+      </Principal>
+      <Dependent Role="PC">
+        <PropertyRef Name="SN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FirmaKomputerowaModelStoreContainer">
+    <EntitySet Name="Drukarki" EntityType="Self.Drukarki" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Laptopy" EntityType="Self.Laptopy" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PC" EntityType="Self.PC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Produkty" EntityType="Self.Produkty" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Drukarki__SN__2C3393D0" Association="Self.FK__Drukarki__SN__2C3393D0">
+      <End Role="Produkty" EntitySet="Produkty" />
+      <End Role="Drukarki" EntitySet="Drukarki" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Laptopy__SN__29572725" Association="Self.FK__Laptopy__SN__29572725">
+      <End Role="Produkty" EntitySet="Produkty" />
+      <End Role="Laptopy" EntitySet="Laptopy" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PC__SN__267ABA7A" Association="Self.FK__PC__SN__267ABA7A">
+      <End Role="Produkty" EntitySet="Produkty" />
+      <End Role="PC" EntitySet="PC" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

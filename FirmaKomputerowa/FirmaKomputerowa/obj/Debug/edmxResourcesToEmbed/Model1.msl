@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FirmaKomputerowaModelStoreContainer" CdmEntityContainer="FirmaKomputerowaEntities">
+    <EntitySetMapping Name="Drukarki">
+      <EntityTypeMapping TypeName="FirmaKomputerowaModel.Drukarki">
+        <MappingFragment StoreEntitySet="Drukarki">
+          <ScalarProperty Name="DrukarkiID" ColumnName="DrukarkiID" />
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="Format_papieru" ColumnName="Format_papieru" />
+          <ScalarProperty Name="Kolor" ColumnName="Kolor" />
+          <ScalarProperty Name="Typ_Drukarki" ColumnName="Typ_Drukarki" />
+          <ScalarProperty Name="Cena" ColumnName="Cena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Laptopy">
+      <EntityTypeMapping TypeName="FirmaKomputerowaModel.Laptopy">
+        <MappingFragment StoreEntitySet="Laptopy">
+          <ScalarProperty Name="LaptopyID" ColumnName="LaptopyID" />
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="Procesor" ColumnName="Procesor" />
+          <ScalarProperty Name="Pamiec_RAM" ColumnName="Pamiec_RAM" />
+          <ScalarProperty Name="Dysk_SSD" ColumnName="Dysk_SSD" />
+          <ScalarProperty Name="Dysk_HDD" ColumnName="Dysk_HDD" />
+          <ScalarProperty Name="Ekran" ColumnName="Ekran" />
+          <ScalarProperty Name="Cena" ColumnName="Cena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PC">
+      <EntityTypeMapping TypeName="FirmaKomputerowaModel.PC">
+        <MappingFragment StoreEntitySet="PC">
+          <ScalarProperty Name="PCID" ColumnName="PCID" />
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="Procesor" ColumnName="Procesor" />
+          <ScalarProperty Name="Pamiec_RAM" ColumnName="Pamiec_RAM" />
+          <ScalarProperty Name="Dysk_SSD" ColumnName="Dysk_SSD" />
+          <ScalarProperty Name="Dysk_HDD" ColumnName="Dysk_HDD" />
+          <ScalarProperty Name="Predkosc_CD" ColumnName="Predkosc_CD" />
+          <ScalarProperty Name="Cena" ColumnName="Cena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Produkty">
+      <EntityTypeMapping TypeName="FirmaKomputerowaModel.Produkty">
+        <MappingFragment StoreEntitySet="Produkty">
+          <ScalarProperty Name="ProduktyID" ColumnName="ProduktyID" />
+          <ScalarProperty Name="SN" ColumnName="SN" />
+          <ScalarProperty Name="Producent" ColumnName="Producent" />
+          <ScalarProperty Name="Typ" ColumnName="Typ" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

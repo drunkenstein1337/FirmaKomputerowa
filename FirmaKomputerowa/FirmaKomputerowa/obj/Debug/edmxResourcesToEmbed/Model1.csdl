@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FirmaKomputerowaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Drukarki">
+    <Key>
+      <PropertyRef Name="DrukarkiID" />
+    </Key>
+    <Property Name="DrukarkiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SN" Type="Int32" Nullable="false" />
+    <Property Name="Format_papieru" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Kolor" Type="Boolean" Nullable="false" />
+    <Property Name="Typ_Drukarki" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Cena" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Produkty" Relationship="Self.FK__Drukarki__SN__2C3393D0" FromRole="Drukarki" ToRole="Produkty" />
+  </EntityType>
+  <EntityType Name="Laptopy">
+    <Key>
+      <PropertyRef Name="LaptopyID" />
+    </Key>
+    <Property Name="LaptopyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SN" Type="Int32" Nullable="false" />
+    <Property Name="Procesor" Type="Double" Nullable="false" />
+    <Property Name="Pamiec_RAM" Type="Int32" Nullable="false" />
+    <Property Name="Dysk_SSD" Type="Int32" Nullable="false" />
+    <Property Name="Dysk_HDD" Type="Int32" Nullable="false" />
+    <Property Name="Ekran" Type="Int32" Nullable="false" />
+    <Property Name="Cena" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Produkty" Relationship="Self.FK__Laptopy__SN__29572725" FromRole="Laptopy" ToRole="Produkty" />
+  </EntityType>
+  <EntityType Name="PC">
+    <Key>
+      <PropertyRef Name="PCID" />
+    </Key>
+    <Property Name="PCID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SN" Type="Int32" Nullable="false" />
+    <Property Name="Procesor" Type="Double" Nullable="false" />
+    <Property Name="Pamiec_RAM" Type="Int32" Nullable="false" />
+    <Property Name="Dysk_SSD" Type="Int32" />
+    <Property Name="Dysk_HDD" Type="Int32" />
+    <Property Name="Predkosc_CD" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Cena" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Produkty" Relationship="Self.FK__PC__SN__267ABA7A" FromRole="PC" ToRole="Produkty" />
+  </EntityType>
+  <EntityType Name="Produkty">
+    <Key>
+      <PropertyRef Name="SN" />
+    </Key>
+    <Property Name="ProduktyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SN" Type="Int32" Nullable="false" />
+    <Property Name="Producent" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Typ" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Drukarki" Relationship="Self.FK__Drukarki__SN__2C3393D0" FromRole="Produkty" ToRole="Drukarki" />
+    <NavigationProperty Name="Laptopy" Relationship="Self.FK__Laptopy__SN__29572725" FromRole="Produkty" ToRole="Laptopy" />
+    <NavigationProperty Name="PC" Relationship="Self.FK__PC__SN__267ABA7A" FromRole="Produkty" ToRole="PC" />
+  </EntityType>
+  <Association Name="FK__Drukarki__SN__2C3393D0">
+    <End Role="Produkty" Type="Self.Produkty" Multiplicity="1" />
+    <End Role="Drukarki" Type="Self.Drukarki" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produkty">
+        <PropertyRef Name="SN" />
+      </Principal>
+      <Dependent Role="Drukarki">
+        <PropertyRef Name="SN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Laptopy__SN__29572725">
+    <End Role="Produkty" Type="Self.Produkty" Multiplicity="1" />
+    <End Role="Laptopy" Type="Self.Laptopy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produkty">
+        <PropertyRef Name="SN" />
+      </Principal>
+      <Dependent Role="Laptopy">
+        <PropertyRef Name="SN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PC__SN__267ABA7A">
+    <End Role="Produkty" Type="Self.Produkty" Multiplicity="1" />
+    <End Role="PC" Type="Self.PC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produkty">
+        <PropertyRef Name="SN" />
+      </Principal>
+      <Dependent Role="PC">
+        <PropertyRef Name="SN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FirmaKomputerowaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Drukarki" EntityType="Self.Drukarki" />
+    <EntitySet Name="Laptopy" EntityType="Self.Laptopy" />
+    <EntitySet Name="PC" EntityType="Self.PC" />
+    <EntitySet Name="Produkty" EntityType="Self.Produkty" />
+    <AssociationSet Name="FK__Drukarki__SN__2C3393D0" Association="Self.FK__Drukarki__SN__2C3393D0">
+      <End Role="Produkty" EntitySet="Produkty" />
+      <End Role="Drukarki" EntitySet="Drukarki" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Laptopy__SN__29572725" Association="Self.FK__Laptopy__SN__29572725">
+      <End Role="Produkty" EntitySet="Produkty" />
+      <End Role="Laptopy" EntitySet="Laptopy" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PC__SN__267ABA7A" Association="Self.FK__PC__SN__267ABA7A">
+      <End Role="Produkty" EntitySet="Produkty" />
+      <End Role="PC" EntitySet="PC" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
